@@ -4,7 +4,7 @@ import { auth } from '@clerk/nextjs/server';
 import {use} from "react"
 
 // Add explicit type definition for the layout component
-function layout({children, params} : {children: React.ReactNode, params: Promise<{id : string}>}) {
+function Layout({children, params} : {children: React.ReactNode, params: Promise<{id : string}>}) {
   const {id} = use(params)
   auth.protect()
   return (
@@ -14,5 +14,5 @@ function layout({children, params} : {children: React.ReactNode, params: Promise
     </RoomProvider>
   )
 }
-export default layout;
+export default Layout;
 
