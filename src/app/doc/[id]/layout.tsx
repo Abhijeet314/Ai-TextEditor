@@ -8,7 +8,6 @@ async function Layout({children, params} : {children: React.ReactNode, params: P
   const id = (await (params)).id
   auth.protect()
   return (
-
     <RoomProvider roomId={id}>
       {children}
     </RoomProvider>
