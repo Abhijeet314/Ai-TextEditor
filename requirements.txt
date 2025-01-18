@@ -1,6 +1,0 @@
-langchain
-langchain_community
-langchain_groq
-flask
-flask-cors
-gunicorn
