@@ -1,19 +1,15 @@
 'use client'
-import { useRoom } from '@liveblocks/react'
+
 import React, { FormEvent, useState, useTransition } from 'react'
 import {
     Dialog,
     DialogContent,
     DialogDescription,
-    DialogFooter,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
   } from "@/components/ui/dialog"
 import { Button } from './ui/button'
-import { DialogClose } from '@radix-ui/react-dialog';
-import { useRouter } from 'next/navigation';
-import { deleteDocument, InviteUser } from '../../actions/actions'
 import { toast } from 'sonner'
 import { Input } from './ui/input'
 import { BotIcon, MessageCircleCode } from 'lucide-react'
@@ -29,32 +25,35 @@ function chatDocument({doc} : {doc: Y.Doc}) {
 
     const handleAskQuestion = async (e:FormEvent) => {
         e.preventDefault()
-        try {
-              const documentData = doc.get('document-store').toJSON();
-              const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/chatToDocument`, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  document_data: documentData,
-                  input: input
-                }),
-              });
-        
-              if (res.ok) {
-                const { response } = await res.json();
-                setInput("")
-                setAnswer(response)
-                toast.success('Translation successful!');
-              } else {
-                const error = await res.json();
-                toast.error(`Error: ${error.error}`);
-              }
-            } catch (err) {
-              toast.error('Failed to fetch the translation.');
-              console.error(err);
+
+        startTranistion(async () => {
+          try {
+            const documentData = doc.get('document-store').toJSON();
+            const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/chatToDocument`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                document_data: documentData,
+                input: input
+              }),
+            });
+      
+            if (res.ok) {
+              const { response } = await res.json();
+              setInput("")
+              setAnswer(response)
+              toast.success('Translation successful!');
+            } else {
+              const error = await res.json();
+              toast.error(`Error: ${error.error}`);
             }
+          } catch (err) {
+            toast.error('Failed to fetch the translation.');
+            console.error(err);
+          }
+        })   
     }
 
   return (

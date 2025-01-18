@@ -4,7 +4,6 @@ import React from 'react'
 import { RoomProvider as RoomProviderWrapper, ClientSideSuspense } from '@liveblocks/react'
 import LoadingSpinner from './LoadingSpinner'
 import LiveCursorProvider from './LiveCursorProvider'
-import { LiveList, LiveObject } from '@liveblocks/client'
 
 function RoomProvider({roomId, children} : {
     roomId: string,

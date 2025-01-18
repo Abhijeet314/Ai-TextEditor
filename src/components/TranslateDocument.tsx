@@ -7,7 +7,6 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -48,32 +47,35 @@ function TranslateDocument({ doc }: { doc: Y.Doc }) {
 
   const handleAskQuestion = async (e: FormEvent) => {
     e.preventDefault();
-
-    try {
-      const documentData = doc.get('document-store').toJSON();
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/translateDocument`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          document_data: documentData,
-          Language: language,
-        }),
-      });
-
-      if (res.ok) {
-        const { response } = await res.json();
-        setSummary(response);
-        toast.success('Translation successful!');
-      } else {
-        const error = await res.json();
-        toast.error(`Error: ${error.error}`);
+    
+    startTransition(async() => {
+      try {
+        const documentData = doc.get('document-store').toJSON();
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/translateDocument`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            document_data: documentData,
+            Language: language,
+          }),
+        });
+  
+        if (res.ok) {
+          const { response } = await res.json();
+          setSummary(response);
+          toast.success('Translation successful!');
+        } else {
+          const error = await res.json();
+          toast.error(`Error: ${error.error}`);
+        }
+      } catch (err) {
+        toast.error('Failed to fetch the translation.');
+        console.error(err);
       }
-    } catch (err) {
-      toast.error('Failed to fetch the translation.');
-      console.error(err);
-    }
+    })
+    
   };
 
   return (

@@ -1,5 +1,5 @@
 'use client'
-import { useOther, useOthers, useSelf } from '@liveblocks/react'
+import { useOthers, useSelf } from '@liveblocks/react'
 import React from 'react'
 import {
     Tooltip,

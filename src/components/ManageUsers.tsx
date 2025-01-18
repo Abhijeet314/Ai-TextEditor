@@ -5,21 +5,19 @@ import {
     Dialog,
     DialogContent,
     DialogDescription,
-    DialogFooter,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
   } from "@/components/ui/dialog"
 import { Button } from './ui/button'
-import { DialogClose } from '@radix-ui/react-dialog';
-import { useRouter } from 'next/navigation';
-import { deleteDocument, InviteUser, removeUserFromRoom } from '../../actions/actions'
+
+import { removeUserFromRoom } from '../../actions/actions'
 import { toast } from 'sonner'
-import { Input } from './ui/input'
+
 import { useUser } from '@clerk/nextjs'
 import useOwner from '@/lib/useOwner'
-import { CollectionGroup } from 'firebase-admin/firestore'
-import { collection, collectionGroup, query, where } from 'firebase/firestore'
+
+import {collectionGroup, query, where } from 'firebase/firestore'
 import { db } from '../../firebase'
 import { useCollection } from 'react-firebase-hooks/firestore'
 

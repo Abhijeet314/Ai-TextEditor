@@ -6,7 +6,6 @@ import { useDocumentData } from 'react-firebase-hooks/firestore'
 import { doc, updateDoc } from 'firebase/firestore'
 import { db } from '../../firebase'
 import Editor from './Editor'
-import useOwner from "@/lib/useOwner";
 import DeleteDocument from './DeleteDocument'
 import InviteUserToRoom from './InviteUserToRoom'
 import ManageUsers from './ManageUsers'
@@ -15,8 +14,7 @@ import Avatars from './Avatars'
 function Document({id} : {id: string}) {
     const [input, setInput] = useState("")
     const [isUpdating, startTranistion] = useTransition()
-    const[data, loading, error] = useDocumentData(doc(db, "documents", id))
-    const isOwner = useOwner();
+    const[data] = useDocumentData(doc(db, "documents", id))
 
     useEffect(() => {
         if(data) {

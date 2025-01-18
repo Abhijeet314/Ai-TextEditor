@@ -8,7 +8,7 @@ import { doc } from 'firebase/firestore'
 import { usePathname } from 'next/navigation'
 
 function SidebarOption({href, id}: {href:string,  id: string}) {
-    const [data, loading, error] = useDocumentData(doc(db, "documents", id))
+    const [data] = useDocumentData(doc(db, "documents", id))
     const path = usePathname()
     const isActive = href.includes(path) && path!== "/" // just checking if Link is active or not by ensuring correct path
     if (!data) return null;
