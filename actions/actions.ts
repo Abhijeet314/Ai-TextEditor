@@ -2,9 +2,9 @@
 
 import { auth } from "@clerk/nextjs/server"
 import { adminDb } from "../firebase-admin"
-import { query } from "firebase/firestore";
+
 import liveblocks from "@/lib/liveblocks";
-import { use } from "react";
+
 
 export async function createNewDocument() {
     // whenever a user click on New Document without login we can use this so it will go directly in clerk login page
