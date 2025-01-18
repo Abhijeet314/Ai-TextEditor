@@ -2,7 +2,12 @@ import RoomProvider from '@/components/RoomProvider';
 import React from 'react';
 import { auth } from '@clerk/nextjs/server';
 
-async function layout({ children, params }: { children: React.ReactNode; params: { id: string } }) {
+interface LayoutProps {
+  children: React.ReactNode;
+  params: { id: string };
+}
+
+async function layout({ children, params }: LayoutProps) {
   // Access the id directly from params
   const { id } = params;
 
