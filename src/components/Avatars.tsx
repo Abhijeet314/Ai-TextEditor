@@ -19,7 +19,7 @@ function Avatars() {
     <div className='flex items-center gap-2'>
         <p className='font-light '>Users currently editing the document</p>
         <div className='flex -space-x-5'>
-            {all.map((other, i) => (
+            {all.map((other) => (
                 <TooltipProvider key={other?.id}>
                 <Tooltip>
                     <TooltipTrigger>

@@ -11,6 +11,7 @@ function LiveCursorProvider({children} : {children : React.ReactNode}) {
 
     const handlePointerMove = (e : PointerEvent<HTMLDivElement>) => {
         const cursor = {x: Math.floor(e.pageX), y : Math.floor(e.pageY)}
+        console.log(presence)
         updatePresence({cursor})
     }
 

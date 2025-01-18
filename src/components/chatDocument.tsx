@@ -17,7 +17,7 @@ import * as Y from "yjs"
 
 
 
-function chatDocument({doc} : {doc: Y.Doc}) {
+function ChatDocument({doc} : {doc: Y.Doc}) {
     const [isOpen, SetIsOpen] = useState(false);
     const [isPending, startTranistion] = useTransition();
     const [input, setInput] = useState("");
@@ -113,4 +113,4 @@ function chatDocument({doc} : {doc: Y.Doc}) {
   )
 }
 
-export default chatDocument
+export default ChatDocument

@@ -77,7 +77,7 @@ const Sidebar = () => {
     );
 
 const {user} = useUser();
-const [data, loading, error] = useCollection(
+const [data] = useCollection(
   user && 
     query(
       collectionGroup(db,"rooms"),

@@ -1,6 +1,6 @@
 'use client'
 import { useRoom } from '@liveblocks/react'
-import React, { FormEvent, useState, useTransition } from 'react'
+import React, { useState, useTransition } from 'react'
 import {
     Dialog,
     DialogContent,
@@ -36,14 +36,16 @@ function ManageUsers() {
         if(!userId) {
             return 
         }
-
-        const {success} = await removeUserFromRoom(room.id, userId)
+        startTranistion(async() => {
+            const {success} = await removeUserFromRoom(room.id, userId)
         
-        if(success){
-            toast.success("Delete the User from room Successfully")
-        } else{
-            toast.error("Error Deleting the User")
-        }
+            if(success){
+                toast.success("Delete the User from room Successfully")
+            } else{
+                toast.error("Error Deleting the User")
+            }
+        })
+        
     }
 
   return (
