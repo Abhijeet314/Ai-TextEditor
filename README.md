@@ -79,7 +79,7 @@ This repository works with the backend API hosted in the Flask and AI models rep
 - API endpoints for processing document content.
 
 ### Backend Repository
-Find the backend repository here: [Backend Repository]((https://github.com/Abhijeet314/flask-nextjs-TextEditor))
+Find the backend repository here: [Backend Repository](https://github.com/Abhijeet314/flask-nextjs-TextEditor)
 
 Ensure that the `NEXT_PUBLIC_BASE_URL` in the `.env.local` file points to the deployed backend API URL.
 
