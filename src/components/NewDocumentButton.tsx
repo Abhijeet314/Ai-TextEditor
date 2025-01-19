@@ -6,10 +6,8 @@ import React, { useTransition } from 'react'
 import { Button } from './ui/button'
 import { useRouter } from 'next/navigation';
 import { createNewDocument } from '../../actions/actions';
-import { auth } from '@clerk/nextjs/server';
 
 const NewDocumentButton = () => {
-  auth.protect()
   const [isPending, startTransition] = useTransition();
   const router = useRouter()
   const handleCreateNewDocument = () => {
